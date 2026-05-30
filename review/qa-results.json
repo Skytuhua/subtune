@@ -72,7 +72,7 @@
   {
     "name": "5000-cue file parses",
     "pass": true,
-    "detail": "331ms"
+    "detail": "398ms"
   },
   {
     "name": "no off-host requests",

@@ -12,7 +12,7 @@ PASS  clipboard has WEBVTT
 PASS  light mode
 PASS  garbage -> error alert
 PASS  mobile renders editor
-PASS  5000-cue file parses — 398ms
+PASS  5000-cue file parses — 420ms
 PASS  no off-host requests — none
 PASS  no console/page errors
 

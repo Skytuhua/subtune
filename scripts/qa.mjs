@@ -31,14 +31,19 @@ const ctx = await browser.newContext({
   ...devices['Desktop Chrome'],
   viewport: { width: 1440, height: 1100 },
   colorScheme: 'dark', // app is dark-first; ensures the theme toggle starts at "dark"
+  ignoreHTTPSErrors: true, // tolerate sandbox clock-skew vs. a freshly-issued TLS cert
 });
 await ctx.grantPermissions(['clipboard-read', 'clipboard-write']);
 
-// Track any request that leaves localhost — proves no file data is uploaded.
+// Track any request to a THIRD-PARTY host — proves no file data is uploaded and
+// no external CDN/tracker is contacted. The app's own origin (localhost in dev,
+// the deploy host in prod) is allowed; anything else is a privacy violation.
+const ownHost = new URL(BASE).hostname;
+const allowedHosts = new Set([ownHost, 'localhost', '127.0.0.1']);
 const offHosts = new Set();
 ctx.on('request', (req) => {
   const u = new URL(req.url());
-  if (u.hostname !== 'localhost' && u.hostname !== '127.0.0.1') offHosts.add(u.hostname);
+  if (!allowedHosts.has(u.hostname)) offHosts.add(u.hostname);
 });
 
 const page = await ctx.newPage();

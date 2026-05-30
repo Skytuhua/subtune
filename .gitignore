@@ -9,3 +9,8 @@ coverage/
 *.log
 npm-debug.log*
 .vite/
+
+# keep QA evidence
+!review/qa-results.json
+!review/qa-local.log
+!review/qa-live.log
