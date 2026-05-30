@@ -1,0 +1,87 @@
+[
+  {
+    "name": "landing heading",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "name": "dropzone present",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "name": "parsed 3 cues",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "name": "shift +2s",
+    "pass": true,
+    "detail": "00:00:01,000 -> 00:00:03,000"
+  },
+  {
+    "name": "undo restores",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "name": "fps convert applied",
+    "pass": true,
+    "detail": "now 00:00:00,959"
+  },
+  {
+    "name": "resync anchors render",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "name": "resync stretched last cue to ~20s",
+    "pass": true,
+    "detail": "last=00:00:20,000"
+  },
+  {
+    "name": "cleanup toggles present",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "name": "download a .vtt file",
+    "pass": true,
+    "detail": "pasted.fixed.vtt"
+  },
+  {
+    "name": "clipboard has WEBVTT",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "name": "light mode",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "name": "garbage -> error alert",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "name": "mobile renders editor",
+    "pass": true,
+    "detail": ""
+  },
+  {
+    "name": "5000-cue file parses",
+    "pass": true,
+    "detail": "331ms"
+  },
+  {
+    "name": "no off-host requests",
+    "pass": true,
+    "detail": "none"
+  },
+  {
+    "name": "no console/page errors",
+    "pass": true,
+    "detail": ""
+  }
+]

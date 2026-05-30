@@ -1,0 +1,19 @@
+PASS  landing heading
+PASS  dropzone present
+PASS  parsed 3 cues
+PASS  shift +2s — 00:00:01,000 -> 00:00:03,000
+PASS  undo restores
+PASS  fps convert applied — now 00:00:00,959
+PASS  resync anchors render
+PASS  resync stretched last cue to ~20s — last=00:00:20,000
+PASS  cleanup toggles present
+PASS  download a .vtt file — pasted.fixed.vtt
+PASS  clipboard has WEBVTT
+PASS  light mode
+PASS  garbage -> error alert
+PASS  mobile renders editor
+PASS  5000-cue file parses — 331ms
+PASS  no off-host requests — none
+PASS  no console/page errors
+
+17/17 checks passed
