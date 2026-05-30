@@ -13,7 +13,7 @@ import { parseTimestamp } from './time';
 export function parseBlocks(text: string): { cues: Cue[]; warnings: string[] } {
   const warnings: string[] = [];
   // Strip BOM and normalise line endings.
-  const normalised = text.replace(/^﻿/, '').replace(/\r\n?/g, '\n');
+  const normalised = text.replace(/^\uFEFF/, '').replace(/\r\n?/g, '\n');
   const lines = normalised.split('\n');
 
   const cues: Cue[] = [];
@@ -61,7 +61,7 @@ export function parseBlocks(text: string): { cues: Cue[]; warnings: string[] } {
 
 /** Detect the subtitle format from its content. Defaults to SRT. */
 export function detectFormat(text: string): SubtitleFormat {
-  const head = text.replace(/^﻿/, '').trimStart();
+  const head = text.replace(/^\uFEFF/, '').trimStart();
   if (/^WEBVTT/.test(head)) return 'vtt';
   // SRT timing uses a comma before the millis; VTT uses a dot.
   const firstTiming = text.match(/(?:\d+:)?\d{1,2}:\d{2}([.,])\d{1,3}\s*-->/);

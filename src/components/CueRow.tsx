@@ -33,7 +33,8 @@ function CueRowImpl({
     const ms = parseTimestamp(raw.replace('.', s).replace(',', s));
     if (ms === null) {
       // revert to the known-good value
-      field === 'start' ? setStart(formatTimestamp(cue.start, s)) : setEnd(formatTimestamp(cue.end, s));
+      if (field === 'start') setStart(formatTimestamp(cue.start, s));
+      else setEnd(formatTimestamp(cue.end, s));
       return;
     }
     onEdit(cue.id, { [field]: ms });
