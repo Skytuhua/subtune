@@ -18,7 +18,7 @@ const buttonVariants: Record<NonNullable<ButtonProps['variant']>, string> = {
 export function Button({ variant = 'secondary', className = '', ...props }: ButtonProps) {
   return (
     <button
-      className={`inline-flex items-center justify-center gap-2 rounded px-3.5 py-2 text-sm font-medium transition-colors duration-150 disabled:cursor-not-allowed ${buttonVariants[variant]} ${className}`}
+      className={`inline-flex min-h-[44px] items-center justify-center gap-2 rounded px-3.5 py-2 text-sm font-medium transition-colors duration-150 disabled:cursor-not-allowed sm:min-h-[38px] ${buttonVariants[variant]} ${className}`}
       {...props}
     />
   );
@@ -106,17 +106,19 @@ export function Toggle({
   onChange: (v: boolean) => void;
   label: string;
 }) {
+  // The whole row is the control, giving a comfortable (>=44px) touch target.
   return (
-    <label className="flex cursor-pointer select-none items-center justify-between gap-3 py-1.5">
+    <button
+      type="button"
+      role="switch"
+      aria-checked={checked}
+      onClick={() => onChange(!checked)}
+      className="flex min-h-[44px] w-full cursor-pointer select-none items-center justify-between gap-3 rounded py-1.5 text-left transition-colors duration-150 hover:bg-surface-2/50"
+    >
       <span className="text-sm text-text">{label}</span>
-      <button
-        type="button"
-        role="switch"
-        aria-checked={checked}
-        aria-label={label}
-        onClick={() => onChange(!checked)}
+      <span
         className={`relative h-5 w-9 shrink-0 rounded-full transition-colors duration-150 ${
-          checked ? 'bg-primary' : 'bg-surface-2 border border-border'
+          checked ? 'bg-primary' : 'border border-border bg-surface-2'
         }`}
       >
         <span
@@ -124,8 +126,8 @@ export function Toggle({
             checked ? 'translate-x-4' : 'translate-x-0.5'
           }`}
         />
-      </button>
-    </label>
+      </span>
+    </button>
   );
 }
 

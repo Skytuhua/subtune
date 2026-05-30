@@ -1,10 +1,14 @@
 import type { Cue, Subtitle, SubtitleFormat } from './types';
 import { parseTimestamp } from './time';
 
+/** A line is a timing line only if it has timestamp --> timestamp (not a bare "-->"). */
+const TIMING_RE = /(?:\d+:)?\d{1,2}:\d{2}[.,]\d{1,3}\s*-->/;
+
 /**
  * Tolerant, line-based subtitle parser shared by SRT and VTT.
  *
- * Strategy: scan lines and treat any line containing "-->" as a timing line.
+ * Strategy: scan lines and treat a line as a timing line only when it matches
+ * "timestamp --> timestamp" (so dialogue containing a bare "-->" is kept).
  * The cue text is the following non-empty lines up to the next blank line or
  * timing line. This naturally ignores index numbers, the WEBVTT header,
  * NOTE/STYLE blocks, cue identifiers, and cue settings appended to the timing
@@ -23,7 +27,7 @@ export function parseBlocks(text: string): { cues: Cue[]; warnings: string[] } {
 
   while (i < lines.length) {
     const line = lines[i];
-    if (line.includes('-->')) {
+    if (TIMING_RE.test(line)) {
       // Extract the first two timestamp-like tokens (ignores trailing cue settings).
       const stamps = line.match(/(?:\d+:)?\d{1,2}:\d{2}[.,]\d{1,3}/g);
       if (!stamps || stamps.length < 2) {
@@ -35,7 +39,7 @@ export function parseBlocks(text: string): { cues: Cue[]; warnings: string[] } {
       const end = parseTimestamp(stamps[1]);
       i++;
       const textLines: string[] = [];
-      while (i < lines.length && lines[i].trim() !== '' && !lines[i].includes('-->')) {
+      while (i < lines.length && lines[i].trim() !== '' && !TIMING_RE.test(lines[i])) {
         textLines.push(lines[i]);
         i++;
       }

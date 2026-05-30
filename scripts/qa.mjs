@@ -30,6 +30,7 @@ const browser = await chromium.launch();
 const ctx = await browser.newContext({
   ...devices['Desktop Chrome'],
   viewport: { width: 1440, height: 1100 },
+  colorScheme: 'dark', // app is dark-first; ensures the theme toggle starts at "dark"
 });
 await ctx.grantPermissions(['clipboard-read', 'clipboard-write']);
 
@@ -108,7 +109,7 @@ await page.screenshot({ path: `${OUT}/06-cleanup-tab.png`, fullPage: true });
 ok('cleanup toggles present', await page.getByText(/fix overlaps/i).isVisible());
 
 // --- Export format toggle + download ---
-await page.getByRole('button', { name: 'VTT', exact: true }).click();
+await page.getByRole('button', { name: 'Export as VTT' }).click();
 const [dl] = await Promise.all([
   page.waitForEvent('download'),
   page.getByRole('button', { name: /download/i }).click(),

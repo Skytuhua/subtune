@@ -180,6 +180,7 @@ export default function App() {
                         key={f}
                         onClick={() => setExportFormat(f)}
                         aria-pressed={exportFormat === f}
+                        aria-label={`Export as ${f.toUpperCase()}`}
                         className={`flex-1 rounded px-2 py-1.5 text-xs font-medium uppercase transition-colors duration-150 ${
                           exportFormat === f
                             ? 'bg-surface text-text shadow-subtle'

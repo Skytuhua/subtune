@@ -37,13 +37,13 @@ export function Controls({
         {tabs.map((t) => (
           <button
             key={t.id}
+            id={`tab-${t.id}`}
             role="tab"
             aria-selected={tab === t.id}
+            aria-controls="op-panel"
             onClick={() => setTab(t.id)}
-            className={`flex flex-1 items-center justify-center gap-1.5 rounded px-2 py-1.5 text-xs font-medium transition-colors duration-150 ${
-              tab === t.id
-                ? 'bg-surface text-text shadow-subtle'
-                : 'text-muted hover:text-text'
+            className={`flex min-h-[44px] flex-1 items-center justify-center gap-1.5 rounded px-2 py-1.5 text-xs font-medium transition-colors duration-150 sm:min-h-[36px] ${
+              tab === t.id ? 'bg-surface text-text shadow-subtle' : 'text-muted hover:text-text'
             }`}
           >
             {t.icon}
@@ -52,10 +52,12 @@ export function Controls({
         ))}
       </div>
 
-      {tab === 'shift' && <ShiftTab apply={apply} setStatus={setStatus} />}
-      {tab === 'resync' && <ResyncTab cues={cues} apply={apply} setStatus={setStatus} />}
-      {tab === 'fps' && <FpsTab apply={apply} setStatus={setStatus} />}
-      {tab === 'cleanup' && <CleanupTab apply={apply} setStatus={setStatus} />}
+      <div id="op-panel" role="tabpanel" aria-labelledby={`tab-${tab}`}>
+        {tab === 'shift' && <ShiftTab apply={apply} setStatus={setStatus} />}
+        {tab === 'resync' && <ResyncTab cues={cues} apply={apply} setStatus={setStatus} />}
+        {tab === 'fps' && <FpsTab apply={apply} setStatus={setStatus} />}
+        {tab === 'cleanup' && <CleanupTab apply={apply} setStatus={setStatus} />}
+      </div>
     </Panel>
   );
 }

@@ -88,6 +88,18 @@ Good`;
     expect(cues[0].text).toBe('Good');
     expect(warnings.length).toBeGreaterThan(0);
   });
+  it('keeps cue text that contains a bare "-->"', () => {
+    const tricky = `1
+00:00:01,000 --> 00:00:02,000
+wait --> then go
+
+2
+00:00:03,000 --> 00:00:04,000
+ok`;
+    const cues = parseSrt(tricky);
+    expect(cues).toHaveLength(2);
+    expect(cues[0].text).toBe('wait --> then go');
+  });
   it('throws a helpful error when there are no cues', () => {
     expect(() => parse('just some random text')).toThrow(/no subtitle cues/i);
   });

@@ -36,8 +36,8 @@ Defined as CSS variables and consumed via Tailwind. Dark is default.
 | `--border` | `#262626` | 1px low-opacity borders |
 | `--text` | `#EDEDED` | primary text |
 | `--text-muted` | `#A1A1A1` | secondary text |
-| `--primary` | `#3B82F6` | accent / primary actions |
-| `--primary-hover` | `#2563EB` | accent hover |
+| `--primary` | `#2563EB` | accent / primary actions (white text ≈4.9:1, WCAG AA) |
+| `--primary-hover` | `#1D4ED8` | accent hover |
 | `--success` | `#22C55E` | valid / applied |
 | `--warning` | `#F59E0B` | overlap / drift warnings |
 | `--danger` | `#EF4444` | invalid / negative duration |
